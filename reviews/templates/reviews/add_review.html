@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Review {{ product.name }}</h1>
+
+<p>
+    If you have purchased this product, your review will be marked as
+    <strong>Verified</strong>.
+</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div style="margin-bottom: 10px;">
+        <label for="rating">Rating (1-5):</label><br>
+        <input type="number" id="rating" name="rating" min="1" max="5" required>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <label for="comment">Comment:</label><br>
+        <textarea id="comment" name="comment" rows="4" cols="40" required></textarea>
+    </div>
+
+    <button type="submit">Submit Review</button>
+</form>
+
+<br>
+<a href="{% url 'all_products' %}">← Back to Products</a>
+{% endblock %}
