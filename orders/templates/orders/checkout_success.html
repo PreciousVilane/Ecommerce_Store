@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Thank you for your order!</h1>
+
+    <h2>Order Successful!</h2>
+<p>Order ID: {{ order.id }}</p>
+<p>Total Price: R{{ order.total_price|floatformat:2 }}</p>
+
+<h2>Items:</h2>
+<ul>
+    {% for item in order.items.all %}
+        <li>{{ item.product.name }} x {{ item.quantity }} = R{{ item.price|floatformat:2 }}</li>
+    {% endfor %}
+</ul>
+
+    <p style="color: #555;">
+        Further communication and order updates will be sent to your registered email address.
+    </p>
+<a href="{% url 'all_products' %}">Continue Shopping</a>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Your Cart | Vendors Ecommerce Store{% endblock %}
+
+{% block content %}
+<h1>Your Cart</h1>
+
+{% if items %}
+<div class="product-grid">
+    {% for item in items %}
+    <div class="product-card">
+        <h3>{{ item.product.name }}</h3>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Price per item: R{{ item.product.price }}</p>
+        <p>Subtotal: R{{ item.quantity|floatformat:2|add:"0"|floatformat:2|floatformat:"g"|floatformat:2 }}</p>
+
+        <form method="post" action="{% url 'remove_from_cart' item.product.id %}">
+            {% csrf_token %}
+            <button type="submit">Remove</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+<h3>Total: R{{ total }}</h3>
+
+<div style="margin-top: 20px;">
+    <a href="{% url 'checkout' %}"><button>Proceed to Checkout</button></a>
+    <a href="{% url 'all_products' %}"><button style="margin-left:10px;">Back to Products</button></a>
+</div>
+
+{% else %}
+<p>Your cart is empty.</p>
+<a href="{% url 'all_products' %}"><button>Back to Products</button></a>
+{% endif %}
+{% endblock %}
