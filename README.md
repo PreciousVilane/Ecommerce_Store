@@ -27,7 +27,7 @@ pip --version
 git clone https://github.com/yourusername/ecommerce_project.git
 cd ecommerce_project
 
-##  Step 2: Create & Activate Virtual Environment
+## Step 2: Create & Activate Virtual Environment
 
 ### Windows
 
@@ -85,7 +85,7 @@ DATABASES = {
 }
 
 
-## 🔐 Step 5: Apply Migrations
+##  Step 5: Apply Migrations
 
 ```bash
 python manage.py makemigrations
